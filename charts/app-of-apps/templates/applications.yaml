@@ -1,0 +1,28 @@
+{{- range .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .name }}
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io # App silinince kaynakları da siler
+spec:
+  project: {{ .project | default "default" }}
+  source:
+    repoURL: {{ .repoURL }}
+    targetRevision: {{ .targetRevision | default "HEAD" }}
+    path: {{ .path }}
+      {{- if .helm }}
+    helm:
+      valueFiles:
+        - values.yaml
+    {{- end }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ .namespace }}
+  syncPolicy:
+    automated:
+      prune: true    # Git'te olmayan kaynakları sil
+      selfHeal: true # Manuel değişiklikleri geri al
+  {{- end }}

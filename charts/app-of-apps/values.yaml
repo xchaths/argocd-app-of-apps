@@ -1,0 +1,14 @@
+applications:
+  - name: my-nginx
+    namespace: default
+    repoURL: https://github.com/xchaths/argocd-app-of-apps.git
+    targetRevision: main
+    path: apps/nginx
+    project: default
+
+  - name: todo-api
+    namespace: default
+    repoURL: https://github.com/xchaths/argocd-app-of-apps.git
+    targetRevision: main
+    path: apps/todo
+    project: default
