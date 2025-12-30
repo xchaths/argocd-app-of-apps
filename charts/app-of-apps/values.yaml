@@ -3,12 +3,12 @@ applications:
     namespace: nginx
     repoURL: https://github.com/xchaths/argocd-app-of-apps.git
     targetRevision: main
-    path: apps/nginx
+    path: charts/apps/nginx
     project: default
 
   - name: todo-api
     namespace: todo
     repoURL: https://github.com/xchaths/argocd-app-of-apps.git
     targetRevision: main
-    path: apps/todo
+    path: charts/apps/todo
     project: default
