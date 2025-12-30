@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: todo-api
+  name: nginx
   labels:
     app: todo
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: todo
+      app: nginx
   template:
     metadata:
       labels:
-        app: todo
+        app: nginx
     spec:
       containers:
         - name: app
