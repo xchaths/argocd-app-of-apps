@@ -16,7 +16,6 @@ spec:
     spec:
       containers:
         - name: app
-          image: pottava/http-echo
-          args: ["-text", "Merhaba, bu App of Apps ile kuruldu!"]
+          image: gcr.io/google-samples/hello-app:1.0
           ports:
             - containerPort: 8080
