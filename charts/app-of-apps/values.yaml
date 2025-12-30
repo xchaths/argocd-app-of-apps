@@ -7,7 +7,7 @@ applications:
     project: default
 
   - name: todo-api
-    namespace: todo
+    namespace: todo-test
     repoURL: https://github.com/xchaths/argocd-app-of-apps.git
     targetRevision: main
     path: charts/apps/todo
