@@ -6,14 +6,14 @@ metadata:
   name: {{ .name }}
   namespace: argocd
   finalizers:
-    - resources-finalizer.argocd.argoproj.io # App silinince kaynakları da siler
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ .project | default "default" }}
   source:
     repoURL: {{ .repoURL }}
     targetRevision: {{ .targetRevision | default "HEAD" }}
     path: {{ .path }}
-      {{- if .helm }}
+    {{- if .helm }}
     helm:
       valueFiles:
         - values.yaml
@@ -23,6 +23,8 @@ spec:
     namespace: {{ .namespace }}
   syncPolicy:
     automated:
-      prune: true    # Git'te olmayan kaynakları sil
-      selfHeal: true # Manuel değişiklikleri geri al
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
   {{- end }}
